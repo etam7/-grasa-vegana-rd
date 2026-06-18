@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GRASA VEGANA | Luxury Giveaways RD</title>
+<title>GRASAVEGANARD | Elite Luxury Giveaways</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
 
 <!-- SDK Firebase -->
 <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
@@ -14,165 +14,192 @@
 
 <style>
   :root {
-    --bg: #050505;
-    --card-bg: rgba(20, 20, 25, 0.7);
-    --accent: #00f2ff; /* Cian Eléctrico */
-    --accent-2: #7000ff; /* Violeta */
-    --text: #ffffff;
-    --border: rgba(255, 255, 255, 0.08);
-    --font-title: 'Bebas Neue', sans-serif;
-    --font-main: 'Inter', sans-serif;
+    --bg: #000000;
+    --primary: #00f2ff;
+    --secondary: #7000ff;
+    --gold: #d4af37;
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.07);
+    --font-header: 'Syne', sans-serif;
+    --font-body: 'Inter', sans-serif;
   }
 
-  * { box-sizing: border-box; scroll-behavior: smooth; }
+  * { box-sizing: border-box; scroll-behavior: smooth; cursor: default; }
   body { 
-    margin: 0; padding: 0; 
-    background: var(--bg); 
-    color: var(--text); 
-    font-family: var(--font-main); 
-    overflow-x: hidden;
-    background-image: radial-gradient(circle at 10% 20%, rgba(112, 0, 255, 0.05) 0%, transparent 40%),
-                      radial-gradient(circle at 90% 80%, rgba(0, 242, 255, 0.05) 0%, transparent 40%);
+    margin: 0; padding: 0; background: var(--bg); color: #fff; font-family: var(--font-body); overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 0% 0%, rgba(112, 0, 255, 0.15) 0%, transparent 35%),
+        radial-gradient(circle at 100% 100%, rgba(0, 242, 255, 0.1) 0%, transparent 35%);
   }
 
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .container { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
+  a { text-decoration: none; color: inherit; cursor: pointer; }
 
-  /* ---------- HEADER MODERNIZADO ---------- */
+  /* ---------- NAVBAR ULTRATERRENA ---------- */
   .site-header { 
-    position: sticky; top: 0; z-index: 100; 
-    background: rgba(5, 5, 5, 0.8); 
-    backdrop-filter: blur(20px); 
-    border-bottom: 1px solid var(--border); 
-    height: 90px; display: flex; align-items: center; 
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 1200px;
+    z-index: 1000; background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border); border-radius: 20px; height: 70px;
+    display: flex; align-items: center; justify-content: space-between; padding: 0 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   }
-  .header-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-  .logo { font-family: var(--font-title); font-size: 2.2rem; letter-spacing: 2px; }
-  .logo span { color: var(--accent); text-shadow: 0 0 15px rgba(0, 242, 255, 0.3); }
+  .logo { font-family: var(--font-header); font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; }
+  .logo span { color: var(--primary); }
+  .nav-links { display: flex; gap: 40px; font-weight: 700; font-size: 0.75rem; letter-spacing: 2px; }
+  .nav-links a:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
 
-  /* ---------- HERO DE ALTO IMPACTO ---------- */
+  /* ---------- HERO EXPLOSIVO ---------- */
   .hero { 
-    min-height: 95vh; display: flex; flex-direction: column; align-items: center; justify-content: center; 
-    text-align: center; padding: 40px 20px; position: relative;
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; 
+    text-align: center; padding-top: 100px;
+  }
+  .hero-tag { 
+    font-size: 0.7rem; font-weight: 900; letter-spacing: 5px; color: var(--gold); 
+    text-transform: uppercase; margin-bottom: 20px; display: block;
   }
   .hero h1 { 
-    font-family: var(--font-title); font-size: clamp(3.5rem, 12vw, 8rem); 
-    line-height: 0.85; margin: 0; text-transform: uppercase; font-weight: 400;
+    font-family: var(--font-header); font-size: clamp(3rem, 15vw, 10rem); 
+    line-height: 0.8; margin: 0; text-transform: uppercase; font-weight: 800;
   }
-  .hero h1 .stroke {
-    color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+  .text-outline { 
+    color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.2); 
   }
-  .hero h1 .glow {
-    background: linear-gradient(to bottom, #fff, var(--accent));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  .text-glow {
+    background: linear-gradient(180deg, #fff, #666); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
-  .hero p { 
-    max-width: 600px; color: #aaa; margin: 30px 0; font-size: 1.1rem; letter-spacing: 1px;
-    text-transform: uppercase; font-weight: 700;
-  }
-
-  /* BOTÓN CON ANIMACIÓN */
-  .btn-main {
-    background: #fff; color: #000; padding: 22px 50px; border-radius: 4px;
-    font-family: var(--font-title); font-size: 1.4rem; border: none; cursor: pointer;
-    transition: 0.4s; position: relative; overflow: hidden; text-transform: uppercase;
-  }
-  .btn-main:hover { background: var(--accent); transform: scale(1.05); letter-spacing: 4px; }
-
-  /* ---------- CATALOGO CARDS ---------- */
-  .grid-rifas { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 35px; padding: 80px 0; }
-  .card-rifa { 
-    background: var(--card-bg); border-radius: 4px; border: 1px solid var(--border); 
-    transition: 0.5s; position: relative; overflow: hidden;
-  }
-  .card-rifa:hover { border-color: var(--accent); transform: translateY(-10px); background: rgba(30, 30, 40, 0.8); }
-  .card-img { width: 100%; height: 250px; background-size: cover; background-position: center; filter: grayscale(40%); transition: 0.5s; }
-  .card-rifa:hover .card-img { filter: grayscale(0%); transform: scale(1.05); }
-  .card-content { padding: 30px; }
-  .card-content h3 { font-family: var(--font-title); font-size: 1.8rem; margin: 0 0 10px 0; letter-spacing: 1px; }
   
-  .price-tag { font-family: var(--font-title); font-size: 1.5rem; color: var(--accent); }
+  .btn-elite {
+    margin-top: 50px; position: relative; padding: 25px 60px; background: #fff; color: #000;
+    font-family: var(--font-header); font-size: 1.2rem; font-weight: 800; border: none;
+    border-radius: 5px; overflow: hidden; transition: 0.4s; cursor: pointer;
+  }
+  .btn-elite:hover { background: var(--primary); transform: scale(1.05) translateY(-5px); box-shadow: 0 20px 40px rgba(0, 242, 255, 0.3); }
 
-  /* ---------- DASHBOARD PRIVADO (Estilo Matrix) ---------- */
-  #adminPanel { display: none; background: #000; padding: 60px 0; min-height: 100vh; }
-  .stat-card { background: #0a0a0c; border: 1px solid var(--accent); padding: 30px; border-radius: 4px; }
-  .stat-card .val { font-size: 2.5rem; font-family: var(--font-title); color: var(--accent); }
+  /* ---------- CATALOGO BENTO STYLE ---------- */
+  .section-title { font-family: var(--font-header); font-size: 3rem; text-align: center; margin: 100px 0 50px; text-transform: uppercase; }
+  .grid-rifas { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 30px; }
+  
+  .card-rifa { 
+    background: var(--glass); border: 1px solid var(--glass-border); border-radius: 30px;
+    overflow: hidden; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1); position: relative;
+  }
+  .card-rifa:hover { 
+    background: rgba(255,255,255,0.05); border-color: var(--primary);
+    transform: scale(1.02);
+  }
+  .card-img { width: 100%; height: 300px; background-size: cover; background-position: center; transition: 0.8s; }
+  .card-rifa:hover .card-img { transform: scale(1.1); }
+  
+  .card-info { padding: 35px; }
+  .card-info h3 { font-family: var(--font-header); font-size: 1.8rem; margin: 0; text-transform: uppercase; }
+  .card-info .price { font-size: 1.5rem; font-weight: 900; color: var(--primary); margin: 15px 0; display: block; }
+  
+  .prog-bar { height: 4px; background: rgba(255,255,255,0.1); border-radius: 10px; margin: 20px 0; overflow: hidden; }
+  .prog-fill { height: 100%; background: linear-gradient(90deg, var(--secondary), var(--primary)); width: 0%; transition: 2s; }
 
-  /* ---------- PIE DE PÁGINA PROFESIONAL ---------- */
-  .site-footer { background: #000; padding: 100px 0 40px; border-top: 1px solid var(--border); }
-  .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; }
-  .footer-col h4 { font-family: var(--font-title); font-size: 1.3rem; margin-bottom: 30px; color: var(--accent); letter-spacing: 2px; }
-  .footer-col p { color: #666; font-size: 0.9rem; line-height: 1.8; }
-  .footer-col strong { color: #fff; }
+  /* ---------- COMPRA PANEL ---------- */
+  #comprar { padding: 100px 0; display: none; }
+  .glass-box { 
+    background: rgba(10, 10, 10, 0.8); border: 1px solid var(--primary); border-radius: 40px; 
+    padding: 60px; max-width: 800px; margin: 0 auto; backdrop-filter: blur(20px);
+  }
+  input, select { 
+    width: 100%; padding: 20px; background: transparent; border: none; 
+    border-bottom: 2px solid #222; color: #fff; font-size: 1.1rem; margin-bottom: 30px; outline: none;
+  }
+  input:focus { border-color: var(--primary); }
 
-  /* GRASA BOT (Minimalista) */
-  #smart-chat { position: fixed; bottom: 40px; right: 40px; z-index: 1000; }
-  .chat-btn { width: 60px; height: 60px; background: #fff; color: #000; border-radius: 4px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; box-shadow: 0 0 30px rgba(0,242,255,0.2); transition: 0.3s; }
-  .chat-window { position: absolute; bottom: 80px; right: 0; width: 340px; background: #111; border: 1px solid var(--accent); border-radius: 4px; display: none; flex-direction: column; height: 450px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+  /* ---------- DASHBOARD (MATRIX STYLE) ---------- */
+  #adminPanel { display: none; padding: 100px 0; background: #000; min-height: 100vh; }
+  .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 50px; }
+  .admin-stat { background: var(--glass); padding: 40px; border-radius: 20px; border-left: 5px solid var(--primary); }
+  .admin-stat span { font-size: 3rem; font-family: var(--font-header); font-weight: 800; color: var(--primary); }
+  
+  /* ---------- FOOTER ---------- */
+  .site-footer { background: #050505; padding: 120px 0 50px; border-top: 1px solid var(--glass-border); }
+  .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 80px; }
+  .footer-col h4 { font-family: var(--font-header); font-size: 1.2rem; color: #fff; margin-bottom: 30px; letter-spacing: 2px; }
+  .footer-col p { color: #666; line-height: 2; font-size: 0.9rem; }
+  .footer-col strong { color: var(--primary); }
 
-  .admin-trigger { background: none; border: none; color: #111; font-size: 0.6rem; cursor: pointer; position: fixed; top: 10px; right: 10px; z-index: 1000; }
+  /* ---------- GRASA BOT 2.0 ---------- */
+  #smart-chat { position: fixed; bottom: 40px; right: 40px; z-index: 1001; }
+  .chat-btn { 
+    width: 70px; height: 70px; background: #fff; color: #000; border-radius: 20px; 
+    display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.4s;
+    box-shadow: 0 10px 40px rgba(255,255,255,0.2); font-size: 1.5rem;
+  }
+  .chat-btn:hover { transform: rotate(10deg) scale(1.1); background: var(--primary); }
+  .chat-win { 
+    position: absolute; bottom: 90px; right: 0; width: 350px; height: 500px; 
+    background: #0a0a0c; border: 1px solid #222; border-radius: 25px; display: none; flex-direction: column; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+  }
+  .chat-body { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 15px; background: #000; }
+  .m-bot { background: #111; padding: 12px 18px; border-radius: 15px 15px 15px 0; font-size: 0.85rem; border-left: 3px solid var(--primary); }
+  .m-user { background: var(--primary); color: #000; padding: 12px 18px; border-radius: 15px 15px 0 15px; font-size: 0.85rem; align-self: flex-end; font-weight: 700; }
+
+  .admin-key { position: fixed; top: 0; right: 0; opacity: 0.05; font-size: 10px; color: #fff; background: none; border: none; padding: 10px; z-index: 2000; cursor: pointer; }
 </style>
 </head>
 <body>
 
-<button class="admin-trigger" onclick="checkAdmin()">ADMIN_SECURE_LOGIN</button>
+<button class="admin-key" onclick="checkAdmin()">ROOT_ACCESS</button>
 
 <header class="site-header">
-  <div class="container header-inner">
-    <div class="logo"><span>GRASA</span>VEGANARD</div>
-    <nav style="display:flex; gap:30px; font-weight: 900; font-size: 0.8rem; letter-spacing: 2px;">
-        <a href="#rifas">RIFAS</a>
-        <a href="#verificar">MIS BOLETOS</a>
-    </nav>
-  </div>
+  <div class="logo"><span>GRASA</span>VEGANARD</div>
+  <nav class="nav-links">
+    <a href="#rifas">EXPLORAR</a>
+    <a href="#verificar">VERIFICAR</a>
+  </nav>
 </header>
 
-<!-- VISTA PÚBLICA -->
 <div id="publicView">
   <section class="hero">
-    <p>The Most Trusted Raffle Platform in DR</p>
-    <h1><span class="stroke">DEJA DE</span><br><span class="glow">SOÑARLO</span></h1>
-    <p>Porque aquí los premios son reales y la grasa es pesada.</p>
-    <button class="btn-main" onclick="document.getElementById('rifas').scrollIntoView()">Ver Catálogo</button>
+    <span class="hero-tag">Dominican Luxury Raffle System</span>
+    <h1>
+      <span class="text-outline">DEJA DE</span><br>
+      <span class="text-glow">SOÑARLO</span>
+    </h1>
+    <p>La grasa más real de República Dominicana. Tu próxima máquina está a un boleto de distancia.</p>
+    <button class="btn-elite" onclick="document.getElementById('rifas').scrollIntoView()">COMENZAR AHORA</button>
   </section>
 
   <section id="rifas" class="container">
+    <h2 class="section-title">SORTEOS <span>DISPONIBLES</span></h2>
     <div class="grid-rifas" id="rifasGrid"></div>
   </section>
 
-  <!-- FORMULARIO DE COMPRA -->
-  <section id="comprar" class="container" style="display:none; padding: 100px 0;">
-    <div style="background:var(--card-bg); border:1px solid var(--accent); padding:50px; max-width:700px; margin:0 auto; backdrop-filter: blur(20px);">
-      <h2 style="font-family:var(--font-title); font-size:2.5rem; margin-bottom:30px;">Asegura tu oportunidad</h2>
-      <input type="text" id="uName" placeholder="NOMBRE COMPLETO" style="width:100%; padding:20px; background:#000; color:#fff; border:1px solid #333; margin-bottom:20px;">
-      <input type="tel" id="uPhone" placeholder="WHATSAPP (EJ: 809...)" style="width:100%; padding:20px; background:#000; color:#fff; border:1px solid #333; margin-bottom:30px;">
-      
-      <p style="font-size:0.8rem; color:var(--accent); margin-bottom:15px; font-weight:900;">MÉTODO DE PAGO:</p>
-      <select id="uBank" onchange="updateBank()" style="width:100%; padding:20px; background:#000; color:#fff; border:1px solid #333; margin-bottom:30px;">
-          <option value="">SELECCIONA UN BANCO...</option>
+  <!-- FORMULARIO -->
+  <section id="comprar" class="container">
+    <div class="glass-box">
+      <h2 style="font-family:var(--font-header); font-size:3rem; margin:0 0 40px;">REGISTRO DE BOLETO</h2>
+      <input type="text" id="uName" placeholder="NOMBRE COMPLETO">
+      <input type="tel" id="uPhone" placeholder="WHATSAPP">
+      <select id="uBank" onchange="updateBank()">
+          <option value="">ELIJA BANCO PARA TRANSFERENCIA</option>
           <option value="popular">BANCO POPULAR</option>
           <option value="bhd">BANCO BHD</option>
           <option value="reservas">BANRESERVAS</option>
       </select>
-
-      <div id="bankBox" style="display:none; background:#000; border:1px solid var(--accent); padding:25px; margin-bottom:40px;">
-          <p id="bName" style="color:var(--accent); font-weight:800; font-family:var(--font-title); font-size:1.4rem; margin:0;"></p>
-          <p style="margin:10px 0; font-size:1.2rem;">CUENTA: <strong id="bAcc"></strong></p>
+      <div id="bankBox" style="display:none; background:rgba(255,255,255,0.02); padding:30px; border-radius:20px; border:1px solid var(--primary); margin-bottom:40px;">
+          <p id="bName" style="color:var(--primary); font-weight:900; font-family:var(--font-header); font-size:1.5rem; margin:0;"></p>
+          <p style="font-size:1.4rem; margin:15px 0;">CUENTA: <strong id="bAcc"></strong></p>
           <p style="margin:0; color:#888;">TITULAR: JOSE LUIS VICENTE</p>
       </div>
-
-      <button class="btn-main" style="width:100%; background:var(--accent); font-weight:900;" onclick="confirmarVenta()">CONFIRMAR POR WHATSAPP</button>
+      <button class="btn-elite" style="width:100%; background:var(--primary);" onclick="confirmarVenta()">CONFIRMAR PARTICIPACIÓN</button>
     </div>
   </section>
 
   <!-- VERIFICADOR -->
-  <section id="verificar" class="container" style="padding: 100px 0;">
-    <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border); padding: 60px; text-align:center;">
-        <h2 style="font-family: var(--font-title); font-size:3rem;">VERIFICADOR <span style="color:var(--accent)">BOLETOS</span></h2>
-        <div style="display:flex; gap:15px; max-width:500px; margin:40px auto 0;">
-            <input type="tel" id="sPhone" placeholder="Tu WhatsApp" style="width:100%; padding:18px; background:#000; border:1px solid #333; color:#fff; margin:0;">
-            <button onclick="buscarVenta()" style="background:#fff; color:#000; border:none; padding:0 30px; font-weight:900; cursor:pointer;">BUSCAR</button>
+  <section id="verificar" class="container" style="padding: 150px 0;">
+    <div style="background:var(--glass); padding:80px; border-radius:40px; border:1px solid var(--glass-border); text-align:center;">
+        <h2 style="font-family:var(--font-header); font-size:3rem;">MIS BOLETOS</h2>
+        <div style="display:flex; gap:15px; max-width:600px; margin:50px auto 0;">
+            <input type="tel" id="sPhone" placeholder="WhatsApp..." style="margin:0; border-bottom:2px solid var(--primary);">
+            <button onclick="buscarVenta()" style="background:#fff; color:#000; border:none; padding:0 40px; border-radius:5px; font-weight:900; cursor:pointer;">BUSCAR</button>
         </div>
-        <div id="vResults" style="margin-top:40px; text-align:left;"></div>
+        <div id="vResults" style="margin-top:50px; text-align:left;"></div>
     </div>
   </section>
 </div>
@@ -180,64 +207,65 @@
 <!-- DASHBOARD ADMIN -->
 <div id="adminPanel">
   <div class="container">
-    <h2 style="font-family:var(--font-title); font-size:3rem; margin-bottom:50px;">CONTROL <span style="color:var(--accent)">PANEL</span></h2>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; margin-bottom:60px;">
-        <div class="stat-card"><h3>TOTAL RECAUDADO</h3><span class="val" id="statCash">RD$ 0</span></div>
-        <div class="stat-card"><h3>BOLETOS VENDIDOS</h3><span class="val" id="statSold">0</span></div>
+    <h2 style="font-family:var(--font-header); font-size:4rem; margin-bottom:50px;">DASHBOARD_<span>SECURE</span></h2>
+    <div class="admin-grid">
+        <div class="admin-stat"><h3>RECAUDACIÓN TOTAL</h3><span id="statCash">RD$ 0</span></div>
+        <div class="admin-stat" style="border-color:var(--gold);"><h3>BOLETOS ACTIVOS</h3><span id="statSold">0</span></div>
     </div>
-    <div style="background:rgba(0,242,255,0.1); padding:40px; border:1px dashed var(--accent); text-align:center; margin-bottom:60px;">
-        <button class="btn-main" style="background:var(--accent)" onclick="sortear()">EJECUTAR SORTEO ALEATORIO</button>
-        <div id="winnerBox" style="margin-top:30px;"></div>
+    <div style="background:#0a0a0c; padding:50px; border-radius:30px; text-align:center; border:1px dashed var(--primary); margin-bottom:60px;">
+        <h3 style="font-family:var(--font-header);">SISTEMA DE SELECCIÓN ALEATORIA</h3>
+        <button class="btn-elite" style="background:var(--primary);" onclick="sortear()">SORTEAR GANADOR</button>
+        <div id="winnerBox" style="margin-top:40px;"></div>
     </div>
     <div style="overflow-x:auto;">
-        <table id="adminTable">
-            <thead style="background:#111;"><tr><th>CLIENTE</th><th>WHATSAPP</th><th>BOLETO</th><th>ESTADO</th><th>ACCION</th></tr></thead>
+        <table style="width:100%; border-collapse:collapse;">
+            <thead style="color:var(--primary); font-family:var(--font-header); text-transform:uppercase; font-size:0.8rem;">
+                <tr><th style="padding:20px;">Nombre</th><th>WhatsApp</th><th>Ticket</th><th>Estado</th><th>Acción</th></tr>
+            </thead>
             <tbody id="adminBody"></tbody>
         </table>
     </div>
-    <button onclick="location.reload()" style="margin-top:50px; color:#444; border:none; background:none; cursor:pointer; font-weight:900;">[ LOGOUT ]</button>
+    <button onclick="location.reload()" style="margin-top:100px; color:#333; background:none; border:none;">TERMINATE_SESSION</button>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-col">
-      <h4>OPERADO POR</h4>
-      <strong>José Luis Vicente</strong>
-      <p>Registro ONAPI: <strong>grasaveganard</strong></p>
-      <p>Distrito Nacional, República Dominicana</p>
+      <h4>LEGAL_IDENTITY</h4>
+      <p>Operado por: <strong>José Luis Vicente</strong></p>
+      <p>Entidad Registrada: <strong>ONAPI / grasaveganard</strong></p>
+      <p>Santo Domingo, República Dominicana.</p>
     </div>
     <div class="footer-col">
-      <h4>CONECTA</h4>
-      <p>WhatsApp: +1 (809) 363-4222</p>
-      <p>Email: contacto@grasaveganard.com</p>
+      <h4>SECURE_CONTACT</h4>
+      <p>WHATSAPP: +1 (809) 363-4222</p>
+      <p>EMAIL: contacto@grasaveganard.com</p>
     </div>
     <div class="footer-col">
-      <h4>LEGAL</h4>
-      <p>Términos y Condiciones</p>
-      <p>Políticas de Privacidad</p>
-      <div class="social-icons">INSTAGRAM / TIKTOK / YOUTUBE</div>
+      <h4>NETWORKS</h4>
+      <p>Sorteos en vivo vía Instagram y YouTube.</p>
+      <div style="font-size:2rem; margin-top:20px; display:flex; gap:20px;">📸 📹 🐦</div>
     </div>
   </div>
 </footer>
 
-<!-- GRASA BOT -->
+<!-- GRASA BOT 2.0 -->
 <div id="smart-chat">
-  <div class="chat-window" id="chatWin">
-    <div class="chat-header"><span>GRASA BOT</span><button onclick="toggleChat()" style="background:none; border:none; color:#fff; font-size:1.5rem;">×</button></div>
+  <div class="chat-win" id="chatWin">
+    <div class="chat-header"><span>GRASA_SYSTEM_V2</span><button onclick="toggleChat()" style="background:none; border:none; color:#fff;">×</button></div>
     <div id="chatBody" class="chat-body">
-      <div class="msg bot">¡Bienvenido! Soy tu asistente. ¿Quieres ganar una de nuestras máquinas?</div>
+      <div class="m-bot">SISTEMA INICIALIZADO. Bienvenido a GrasaVegana. ¿Deseas información sobre nuestras máquinas o procesos de pago?</div>
     </div>
-    <div class="chat-footer">
-      <input type="text" id="chatInput" placeholder="Escribe tu duda..." onkeypress="if(event.key=='Enter') sendMessage()">
+    <div style="padding:15px; background:#0a0a0c;">
+      <input type="text" id="chatInput" placeholder="Comando..." onkeypress="if(event.key=='Enter') sendMessage()" style="margin:0; padding:12px; font-size:0.8rem;">
     </div>
   </div>
-  <div class="chat-btn" onclick="toggleChat()">🤖</div>
+  <div class="chat-btn" onclick="toggleChat()">💬</div>
 </div>
 
 <script>
-/* FIREBASE CONFIG (LLAVES DE JOSE LUIS) */
+/* FIREBASE CONFIG */
 const firebaseConfig = {
   apiKey: "AIzaSyD41pg4hYghW325qF6haI_au00-rWf4eU4",
   authDomain: "grasavegana.firebaseapp.com",
@@ -250,23 +278,23 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-/* RIFAS */
 const RAFFLES = [
-  { id:1, name:'MAZDA CX30 2021', price:100, img:'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800' },
-  { id:2, name:'BMW M4 o KIA SPORTAGE', price:150, img:'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800' },
-  { id:3, name:'KTM 690 + RD$ 100,000', price:200, img:'https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=800' }
+  { id:1, name:'MAZDA CX30 2021', price:100, sold:65, img:'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800' },
+  { id:2, name:'BMW M4 PERFORMANCE', price:150, sold:22, img:'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800' },
+  { id:3, name:'KTM 690 + CASH', price:200, sold:89, img:'https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=800' }
 ];
 
 let selectedRaffle = null;
 
-function render() {
+function renderRaffles() {
   document.getElementById('rifasGrid').innerHTML = RAFFLES.map(r => `
     <div class="card-rifa">
       <div class="card-img" style="background-image:url('${r.img}')"></div>
-      <div class="card-content">
+      <div class="card-info">
         <h3>${r.name}</h3>
-        <p class="price-tag">RD$ ${r.price}</p>
-        <button class="btn-main" style="width:100%; padding:15px; font-size:1.1rem; margin-top:20px;" onclick="selectRaffle(${r.id})">JUGAR</button>
+        <span class="price">RD$ ${r.price}</span>
+        <div class="prog-bar"><div class="prog-fill" style="width:${r.sold}%"></div></div>
+        <button class="btn-elite" style="width:100%; padding:15px; margin-top:10px; font-size:0.9rem;" onclick="selectRaffle(${r.id})">COMPRAR BOLETO</button>
       </div>
     </div>`).join('');
 }
@@ -289,11 +317,11 @@ function updateBank() {
 function confirmarVenta() {
   const n = document.getElementById('uName').value;
   const p = document.getElementById('uPhone').value.replace(/\D/g,'');
-  if(!n || p.length < 10) return alert("Datos incompletos.");
+  if(!n || p.length < 10) return alert("DATOS REQUERIDOS.");
   const t = Math.floor(1000 + Math.random() * 8999);
   const data = { name:n, phone:p, raffle:selectedRaffle.name, price:selectedRaffle.price, ticket:t, status:'pendiente', date:new Date().toLocaleString() };
   db.ref('ventas/' + p).push(data).then(() => {
-    const m = `¡Hola Grasa Vegana! Compré boletos para ${selectedRaffle.name}. Mi nombre: ${n}. Número: ${t}`;
+    const m = `¡Hola Grasa Vegana! Compré boleto para ${selectedRaffle.name}. Nombre: ${n}. Número: ${t}`;
     window.open(`https://wa.me/18093634222?text=${encodeURIComponent(m)}`, '_blank');
   });
 }
@@ -302,21 +330,20 @@ function buscarVenta() {
   const p = document.getElementById('sPhone').value.replace(/\D/g,'');
   db.ref('ventas/'+p).once('value', s => {
     const d = s.val();
-    if(!d) return document.getElementById('vResults').innerHTML = "<p style='color:red'>No hay registros.</p>";
+    if(!d) return document.getElementById('vResults').innerHTML = "<p style='color:red'>SIN REGISTROS.</p>";
     let h = "";
     for(let i in d) {
       const v = d[i];
-      const c = v.status==='aprobado'?'var(--accent)':'orange';
-      h += `<div style="background:rgba(255,255,255,0.05); padding:20px; border-radius:4px; margin-bottom:15px; border-left:4px solid ${c}">
-            <strong style="font-size:1.2rem;">${v.raffle}</strong><br>Ticket: #${v.ticket} - <span style="color:${c}">${v.status.toUpperCase()}</span></div>`;
+      const c = v.status==='aprobado'?'var(--primary)':'#ff9900';
+      h += `<div style="background:rgba(255,255,255,0.05); padding:30px; border-radius:20px; margin-bottom:20px; border-left:5px solid ${c}">
+            <strong style="font-size:1.5rem; font-family:var(--font-header);">${v.raffle}</strong><br>TICKET: #${v.ticket} - <span style="color:${c}">${v.status.toUpperCase()}</span></div>`;
     }
     document.getElementById('vResults').innerHTML = h;
   });
 }
 
-/* ADMIN LOGIC */
 function checkAdmin() {
-  if(prompt("PASSWORD:") === "1234") {
+  if(prompt("ACCESS_KEY:") === "1234") {
     document.getElementById('publicView').style.display='none';
     document.getElementById('adminPanel').style.display='block';
     loadAdmin();
@@ -332,8 +359,8 @@ function loadAdmin() {
         const v = all[p][i];
         sold++;
         if(v.status==='aprobado') cash += Number(v.price);
-        h += `<tr><td>${v.name}</td><td>${v.phone}</td><td>#${v.ticket}</td><td>${v.status}</td>
-        <td><button style="background:var(--accent); border:none; padding:5px 10px; cursor:pointer;" onclick="approve('${p}','${i}')">✓</button></td></tr>`;
+        h += `<tr><td style="padding:20px;">${v.name}</td><td>${v.phone}</td><td>#${v.ticket}</td><td style="color:var(--primary)">${v.status}</td>
+        <td><button style="background:var(--primary); border:none; padding:8px 15px; border-radius:5px; font-weight:800;" onclick="approve('${p}','${i}')">✓</button></td></tr>`;
       }
     }
     document.getElementById('adminBody').innerHTML = h;
@@ -348,9 +375,9 @@ function sortear() {
         const all = s.val();
         let pool = [];
         for(let p in all) { for(let i in all[p]) { if(all[p][i].status==='aprobado') pool.push(all[p][i]); } }
-        if(pool.length===0) return alert("No hay boletos aprobados.");
+        if(pool.length===0) return alert("NO APPROVED TICKETS.");
         const w = pool[Math.floor(Math.random()*pool.length)];
-        document.getElementById('winnerBox').innerHTML = `<h2 style="color:var(--accent); font-size:2rem;">🏆 GANADOR: ${w.name} (#${w.ticket})</h2><p>WhatsApp: ${w.phone}</p>`;
+        document.getElementById('winnerBox').innerHTML = `<div style="background:var(--primary); color:#000; padding:40px; border-radius:20px;"><h2 style="font-family:var(--font-header); font-size:3rem; margin:0;">${w.name}</h2><p style="font-size:1.5rem; font-weight:900; margin:10px 0;">TICKET #${w.ticket}</p><p>WhatsApp: ${w.phone}</p></div>`;
     });
 }
 
@@ -359,19 +386,19 @@ function sendMessage() {
   const input = document.getElementById('chatInput');
   const body = document.getElementById('chatBody');
   if(!input.value.trim()) return;
-  body.innerHTML += `<div class="msg user">${input.value}</div>`;
+  body.innerHTML += `<div class="m-user">${input.value}</div>`;
   const txt = input.value.toLowerCase();
   input.value = "";
   setTimeout(() => {
-    let r = "Hablamos por WhatsApp al 809-363-4222 para ayudarte mejor.";
-    if(txt.includes("hola")) r = "¡Hola! ¿Listo para ganar una máquina?";
-    if(txt.includes("rifa")) r = "Tenemos Mazda, BMW y KTM disponibles.";
-    body.innerHTML += `<div class="msg bot">${r}</div>`;
+    let r = "ACCESO RESTRINGIDO. Por favor contacte vía WhatsApp al 809-363-4222.";
+    if(txt.includes("hola")) r = "CONEXIÓN ESTABLECIDA. ¿En qué puedo asistirte hoy?";
+    if(txt.includes("pago") || txt.includes("cuenta")) r = "MÉTODOS: Popular, BHD, Reservas. Los detalles se muestran al intentar comprar.";
+    body.innerHTML += `<div class="m-bot">${r}</div>`;
     body.scrollTop = body.scrollHeight;
-  }, 800);
+  }, 600);
 }
 
-render();
+renderRaffles();
 </script>
 </body>
 </html>
