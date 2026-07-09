@@ -1,0 +1,32 @@
+# Dockerfile.gpu (optional) - base with NVIDIA CUDA runtime
+# NOTE: The CUDA runtime image doesn't include Python by default. This image installs python3/pip.
+# For faster-whisper with GPU acceleration, install a torch wheel compatible with the CUDA version.
+
+FROM nvidia/cuda:12.1.1-runtime-ubuntu22.04
+ENV PYTHONUNBUFFERED=1
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        python3 \
+        python3-pip \
+        ffmpeg \
+        git \
+        curl \
+        build-essential \
+    && ln -s /usr/bin/python3 /usr/bin/python \
+    && ln -s /usr/bin/pip3 /usr/bin/pip \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY requirements.txt ./
+# Warning: to use faster-whisper with GPU, install torch matching the CUDA version after build.
+RUN pip install --no-cache-dir -r requirements.txt yt-dlp
+
+COPY scripts/ scripts/
+COPY tools/ tools/
+COPY scripts/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+CMD ["--help"]

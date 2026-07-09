@@ -1,0 +1,64 @@
+name: Build Docker images
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build and upload Docker images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build CPU Docker image
+        run: |
+          docker build -f Dockerfile -t claude-video-skill:cpu-${{ github.sha }} .
+
+      - name: Save CPU image to tar
+        run: |
+          docker save claude-video-skill:cpu-${{ github.sha }} -o cpu-image.tar
+
+      - name: Upload CPU image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpu-image-${{ github.sha }}
+          path: cpu-image.tar
+
+      - name: Build GPU Docker image if Dockerfile.gpu exists
+        run: |
+          if [ -f Dockerfile.gpu ]; then \
+            docker build -f Dockerfile.gpu -t claude-video-skill:gpu-${{ github.sha }} .; \
+            docker save claude-video-skill:gpu-${{ github.sha }} -o gpu-image.tar; \
+            echo "GPU image built"; \
+          else \
+            echo "No Dockerfile.gpu found, skipping GPU image build"; \
+          fi
+
+      - name: Upload GPU image artifact (if produced)
+        if: always()
+        run: |
+          if [ -f gpu-image.tar ]; then \
+            echo "Uploading gpu-image.tar"; \
+            mkdir -p /tmp/artifacts && mv gpu-image.tar /tmp/artifacts/ || true; \
+            ls -la /tmp/artifacts || true; \
+          else \
+            echo "No gpu-image.tar to upload"; \
+          fi
+
+      - name: Upload GPU artifact (conditional)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gpu-image-${{ github.sha }}
+          path: /tmp/artifacts/gpu-image.tar
+          # If file doesn't exist the upload will simply be skipped
