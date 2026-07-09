@@ -3,6 +3,7 @@ openai-whisper
 requests
 yt-dlp
 boto3
+anthropic
 # Optional: faster-whisper (GPU) and torch for faster transcription
 # faster-whisper
 # torch
