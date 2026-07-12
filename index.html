@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GRASAVEGANARD | La Para de los Sorteos RD</title>
+<title>GRASAVEGANARD | Sorteos de Lujo RD</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;700;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
@@ -16,49 +16,70 @@
 <style>
   :root {
     --bg: #000; --primary: #00f2ff; --secondary: #7000ff; --text: #fff;
-    --dr-red: #ef4444; --dr-blue: #3b82f6;
+    --dr-red: #ff3131; --dr-blue: #0066ff;
     --glass: rgba(255, 255, 255, 0.03); --glass-border: rgba(255, 255, 255, 0.1);
   }
 
   * { box-sizing: border-box; scroll-behavior: smooth; }
   
-  /* FONDO BANDERA DOMINICANA NEÓN */
   body { 
     margin: 0; background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; 
     min-height: 100vh;
   }
   
+  /* FONDO BANDERA DOMINICANA */
   body::before {
     content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: url('https://i.ibb.co/L6V2VvQ/dominican-flag-dark.jpg') center/cover no-repeat;
-    opacity: 0.15; filter: grayscale(20%) contrast(120%); z-index: -2;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Flag_of_the_Dominican_Republic.svg/1200px-Flag_of_the_Dominican_Republic.svg.png') center/cover no-repeat;
+    opacity: 0.12; filter: saturate(2) contrast(1.2); z-index: -2;
   }
 
   body::after {
     content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at center, transparent 0%, #000 90%);
+    background: radial-gradient(circle at 20% 30%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 31, 31, 0.15) 0%, transparent 50%);
     z-index: -1;
   }
 
   .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-  /* HEADER */
-  .site-header { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); width: 95%; z-index: 1000; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 20px; height: 70px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; }
-  .logo { font-family: 'Syne'; font-weight: 800; font-size: 1.4rem; letter-spacing: -1px; }
-  .logo .blue { color: var(--dr-blue); } .logo .red { color: var(--dr-red); }
+  /* ---------- HEADER CON LOGO MEJORADO ---------- */
+  .site-header { 
+    position: fixed; top: 15px; left: 50%; transform: translateX(-50%); width: 95%; z-index: 1000; 
+    background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(20px); 
+    border: 1px solid var(--glass-border); border-radius: 20px; height: 80px; 
+    display: flex; align-items: center; justify-content: space-between; padding: 0 30px; 
+  }
+  
+  /* ESTILO DEL LOGO CAJA */
+  .logo-box {
+    display: flex; flex-direction: column; align-items: center; line-height: 1;
+    background: #000; padding: 10px 20px; border-radius: 10px; border: 1px solid #222;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+  }
+  .logo-box .l1 { font-family: 'Syne'; font-size: 0.8rem; letter-spacing: 4px; color: #fff; opacity: 0.8; }
+  .logo-box .l2 { font-family: 'Syne'; font-size: 1.6rem; font-weight: 800; }
+  .logo-box .blue-text { color: var(--dr-blue); }
+  .logo-box .red-text { color: var(--dr-red); }
 
-  /* HERO */
+  .nav-links { display: flex; gap: 30px; font-size: 0.75rem; font-weight: 900; letter-spacing: 2px; }
+  .nav-links a:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+
+  /* ---------- HERO ---------- */
   .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
   .hero h1 { font-family: 'Syne'; font-size: clamp(3.5rem, 15vw, 9rem); line-height: 0.85; margin: 0; text-transform: uppercase; }
   .text-impact { background: linear-gradient(to right, var(--dr-blue), #fff, var(--dr-red)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)); }
+  .text-glow { color: #fff; text-shadow: 0 0 30px rgba(255,255,255,0.2); }
+
+  .btn-elite { margin-top: 40px; padding: 22px 50px; background: #fff; color: #000; font-family: 'Syne'; font-weight: 800; border: none; border-radius: 8px; cursor: pointer; transition: 0.4s; font-size: 1.1rem; text-transform: uppercase; }
+  .btn-elite:hover { background: var(--primary); transform: scale(1.05); box-shadow: 0 0 30px var(--primary); }
 
   /* CATALOGO */
   .grid-rifas { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; padding: 100px 0; }
-  .card-rifa { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 30px; overflow: hidden; transition: 0.5s; position: relative; backdrop-filter: blur(10px); }
-  .card-rifa:hover { border-color: var(--primary); transform: translateY(-10px); background: rgba(255,255,255,0.08); }
+  .card-rifa { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 30px; overflow: hidden; transition: 0.5s; backdrop-filter: blur(10px); }
+  .card-rifa:hover { border-color: var(--primary); transform: translateY(-10px); }
   .card-img { width: 100%; height: 260px; background-size: cover; background-position: center; }
   .card-info { padding: 30px; }
-  .card-info h3 { font-family: 'Syne'; font-size: 1.6rem; margin: 0; text-transform: uppercase; }
   .price { font-size: 1.8rem; font-weight: 900; color: var(--primary); display: block; margin: 15px 0; }
 
   /* MODAL */
@@ -66,56 +87,60 @@
   .modal-box { background: #0a0a0c; border: 1px solid var(--dr-blue); border-radius: 30px; padding: 40px; width: 95%; max-width: 500px; position: relative; border-bottom: 5px solid var(--dr-red); }
   
   input, select { width: 100%; padding: 18px; background: rgba(255,255,255,0.02); border: 1px solid #222; border-radius: 12px; color: #fff; margin-bottom: 20px; font-size: 1rem; outline: none; }
-  input:focus { border-color: var(--primary); }
   .btn-next { width: 100%; padding: 20px; background: #fff; color: #000; border: none; border-radius: 10px; font-family: 'Syne'; font-weight: 800; cursor: pointer; text-transform: uppercase; }
 
   /* GRASA BOT NEÓN */
   #smart-chat { position: fixed; bottom: 30px; right: 30px; z-index: 2500; }
-  .chat-btn { width: 70px; height: 70px; background: linear-gradient(135deg, var(--dr-blue), var(--dr-red)); border-radius: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 10px 40px rgba(255,0,0,0.3); transition: 0.4s; font-size: 2rem; border: 2px solid rgba(255,255,255,0.2); }
-  .chat-btn:hover { transform: scale(1.1) rotate(5deg); }
-  
-  .chat-win { position: absolute; bottom: 85px; right: 0; width: 350px; height: 500px; background: #000; border: 1px solid var(--glass-border); border-radius: 25px; display: none; flex-direction: column; overflow: hidden; box-shadow: 0 20px 80px rgba(0,0,0,0.9); }
+  .chat-btn { width: 70px; height: 70px; background: linear-gradient(135deg, var(--dr-blue), var(--dr-red)); border-radius: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 10px 40px rgba(0, 102, 255, 0.4); transition: 0.4s; font-size: 2rem; border: 2px solid rgba(255,255,255,0.2); }
+  .chat-win { position: absolute; bottom: 85px; right: 0; width: 350px; height: 500px; background: #000; border: 1px solid var(--dr-blue); border-radius: 25px; display: none; flex-direction: column; overflow: hidden; box-shadow: 0 20px 80px rgba(0,0,0,0.9); }
   .chat-header { background: #111; padding: 15px 20px; font-family: 'JetBrains Mono'; font-size: 0.8rem; border-bottom: 1px solid #222; display: flex; justify-content: space-between; color: var(--primary); }
-  .chat-body { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; background-image: linear-gradient(rgba(0,242,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,242,255,0.02) 1px, transparent 1px); background-size: 20px 20px; }
-  .msg { padding: 12px 16px; border-radius: 15px; font-size: 0.85rem; line-height: 1.5; max-width: 85%; font-family: 'Inter'; }
+  .chat-body { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; background: #050505; }
+  .msg { padding: 12px 16px; border-radius: 15px; font-size: 0.85rem; line-height: 1.5; max-width: 85%; }
   .msg.bot { background: #111; color: #fff; align-self: flex-start; border-left: 3px solid var(--dr-blue); border-bottom-left-radius: 2px; }
   .msg.user { background: var(--dr-red); color: #fff; align-self: flex-end; border-bottom-right-radius: 2px; font-weight: 700; }
   .chat-footer { padding: 15px; background: #0a0a0c; display: flex; gap: 10px; }
-  .chat-footer input { margin: 0; padding: 12px; font-size: 0.8rem; background: #000; border: 1px solid #222; border-radius: 10px; }
 
-  /* ADMIN Oculto */
-  .root-btn { position: fixed; bottom: 10px; left: 10px; opacity: 0.05; background: none; border: none; color: #fff; font-size: 9px; cursor: pointer; z-index: 3000; }
+  /* FOOTER */
+  .site-footer { background: #000; padding: 100px 0 50px; border-top: 1px solid var(--glass-border); text-align: center; }
+  .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; text-align: left; }
+  
+  .root-btn { position: fixed; bottom: 5px; left: 5px; opacity: 0.05; background: none; border: none; color: #fff; font-size: 9px; cursor: pointer; z-index: 3000; }
 </style>
 </head>
 <body>
 
-<button class="root-btn" onclick="checkAdmin()">SYSTEM_OVERRIDE</button>
+<button class="root-btn" onclick="checkAdmin()">SYSTEM_OVERRIDE_V4</button>
 
 <header class="site-header">
-  <div class="logo"><span class="blue">GRASA</span><span class="red">VEGANARD</span></div>
-  <nav style="display:flex; gap:25px; font-size:0.75rem; font-weight:900; letter-spacing:2px;">
-    <a href="#rifas">RIFAS</a>
+  <!-- LOGO TIPO PLACA MEJORADO -->
+  <div class="logo-box">
+    <span class="l1">SORTEOS</span>
+    <span class="l2"><span class="blue-text">GRASA</span><span class="red-text">VEGANARD</span></span>
+  </div>
+  
+  <nav class="nav-links">
+    <a href="#rifas">EXPLORAR</a>
     <a href="#verificar">VERIFICAR</a>
   </nav>
 </header>
 
 <div id="publicView">
   <section class="hero">
-    <div style="background: rgba(255,255,255,0.05); padding: 8px 25px; border-radius: 50px; font-size: 0.7rem; color: #aaa; margin-bottom: 30px; letter-spacing: 4px; border: 1px solid var(--glass-border);">SISTEMA DOMINICANO VERIFICADO</div>
-    <h1><span class="text-impact">DEJA DE</span><br>SOÑARLO</h1>
-    <p style="color:#888; max-width: 600px; margin-top: 30px;">La plataforma élite de sorteos en RD. Seguridad, transparencia y premios que cambian vidas.</p>
-    <button class="btn-elite" onclick="document.getElementById('rifas').scrollIntoView()">VER CATÁLOGO REAL</button>
+    <div style="background: rgba(0,102,255,0.1); padding: 8px 25px; border-radius: 50px; font-size: 0.7rem; color: var(--dr-blue); margin-bottom: 30px; letter-spacing: 4px; border: 1px solid var(--dr-blue);">DOMINICAN LUXURY SYSTEM 🇩🇴</div>
+    <h1><span class="text-impact">DEJA DE</span><br><span class="text-glow">SOÑARLO</span></h1>
+    <p style="color:#888; max-width: 600px; margin-top: 30px;">Participa en la plataforma élite de sorteos en RD. Seguridad y transparencia neón.</p>
+    <button class="btn-elite" onclick="document.getElementById('rifas').scrollIntoView()">VER CATÁLOGO</button>
   </section>
 
   <section id="rifas" class="container">
     <div class="grid-rifas" id="rifasGrid"></div>
   </section>
 
-  <section id="verificar" class="container" style="padding: 100px 0;">
+  <section id="verificar" class="container" style="padding: 100px 0; border-top: 1px solid #111;">
     <div style="background:var(--glass); border:1px solid var(--glass-border); padding:80px; border-radius:40px; text-align:center;">
-        <h2 style="font-family:'Syne'; font-size:2.5rem;">MIS <span style="color:var(--dr-blue)">BOLETOS</span></h2>
-        <div style="display:flex; gap:15px; max-width:550px; margin:40px auto 0;">
-            <input type="tel" id="sPhone" placeholder="WhatsApp..." style="margin:0; background:#000;">
+        <h2 style="font-family:'Syne';">ESTADO DE MIS BOLETOS</h2>
+        <div style="display:flex; gap:10px; max-width:550px; margin:40px auto 0;">
+            <input type="tel" id="sPhone" placeholder="Tu WhatsApp registrado..." style="margin:0; background:#000;">
             <button onclick="buscarVenta()" style="background:#fff; color:#000; border:none; padding:0 40px; border-radius:12px; font-weight:900; cursor:pointer;">BUSCAR</button>
         </div>
         <div id="vResults" style="margin-top:40px; text-align:left;"></div>
@@ -123,43 +148,38 @@
   </section>
 </div>
 
-<!-- MODAL FLOW -->
+<!-- MODAL COMPRA -->
 <div class="modal-overlay" id="pModal">
     <div class="modal-box">
         <span style="position:absolute; top:20px; right:25px; cursor:pointer; color:#444; font-size:1.5rem;" onclick="closeModal()">×</span>
-        
         <div id="step1">
-            <h2 style="font-family:'Syne'; margin-bottom:10px;">DATOS</h2>
-            <p style="color:#666; font-size:0.8rem; margin-bottom:30px;">Introduce tus datos reales para el sorteo.</p>
-            <input type="text" id="uName" placeholder="Nombre y Apellido">
+            <h2 style="font-family:'Syne';">PASO 1: DATOS</h2>
+            <input type="text" id="uName" placeholder="Nombre completo">
             <input type="tel" id="uPhone" placeholder="WhatsApp">
             <button class="btn-next" onclick="nextStep(2)">SIGUIENTE</button>
         </div>
-
         <div id="step2" style="display:none;">
-            <h2 style="font-family:'Syne'; margin-bottom:10px;">PAGO</h2>
+            <h2 style="font-family:'Syne';">PASO 2: PAGO</h2>
             <select id="uBank" onchange="showBank()">
-                <option value="">ELIJA UN BANCO</option>
-                <option value="popular">BANCO POPULAR</option>
-                <option value="bhd">BANCO BHD</option>
-                <option value="reservas">BANRESERVAS</option>
+                <option value="">ELIJA BANCO</option>
+                <option value="popular">Banco Popular</option>
+                <option value="bhd">Banco BHD</option>
+                <option value="reservas">Banreservas</option>
             </select>
             <div id="bankInfo" style="display:none; background:#000; border:1px solid var(--dr-blue); padding:20px; border-radius:15px; margin-bottom:20px;">
-                <p id="bName" style="color:var(--dr-blue); font-weight:900; font-family:'Syne';"></p>
-                <p style="font-size:1.2rem; margin:10px 0;">CUENTA: <strong id="bAcc"></strong></p>
-                <p style="margin:0; font-size:0.8rem; color:#666;">JOSE LUIS VICENTE</p>
+                <p id="bName" style="color:var(--dr-blue); font-weight:900;"></p>
+                <p>Cuenta: <strong id="bAcc"></strong></p>
+                <p style="font-size:0.8rem; color:#666;">JOSE LUIS VICENTE</p>
             </div>
             <button class="btn-next" onclick="nextStep(3)">YA PAGUÉ</button>
         </div>
-
         <div id="step3" style="display:none;">
-            <h2 style="font-family:'Syne'; margin-bottom:10px;">RECIBO</h2>
-            <p style="color:#666; font-size:0.8rem; margin-bottom:25px;">Sube la foto del comprobante de transferencia.</p>
-            <div style="border:2px dashed #222; padding:40px; text-align:center; border-radius:20px; cursor:pointer;" onclick="document.getElementById('fileIn').click()">
-                <span id="fileTxt" style="color:#888;">Toca para subir foto</span>
+            <h2 style="font-family:'Syne';">PASO 3: RECIBO</h2>
+            <div style="border:2px dashed #333; padding:40px; text-align:center; cursor:pointer;" onclick="document.getElementById('fileIn').click()">
+                <span id="fileTxt">Subir foto del comprobante</span>
                 <input type="file" id="fileIn" hidden accept="image/*" onchange="handleFile(this)">
             </div>
-            <button id="btnFinal" class="btn-next" style="background:var(--dr-blue); color:#fff; margin-top:20px;" onclick="finish()" disabled>FINALIZAR REGISTRO</button>
+            <button id="btnFinal" class="btn-next" style="background:var(--dr-blue); color:#fff; margin-top:20px;" onclick="finish()" disabled>FINALIZAR</button>
         </div>
     </div>
 </div>
@@ -167,32 +187,33 @@
 <!-- GRASA BOT 🤖 -->
 <div id="smart-chat">
   <div class="chat-win" id="chatWin">
-    <div class="chat-header"><span>GRASA_BOT_v4.0_ONLINE</span><button onclick="toggleChat()" style="background:none; border:none; color:#fff; cursor:pointer;">×</button></div>
+    <div class="chat-header"><span>GRASA_TERMINAL_V4.0</span><button onclick="toggleChat()" style="background:none; border:none; color:#fff;">×</button></div>
     <div id="chatBody" class="chat-body">
-      <div class="msg bot">¡SISTEMA ACTIVO! 🇩🇴 Bienvenido a GrasaVeganaRD. Soy tu asistente inteligente. ¿Quieres saber cómo participar, los números de cuenta o cómo verificar tus boletos?</div>
+      <div class="msg bot">CONEXIÓN ESTABLECIDA. 🇩🇴 Bienvenido a GrasaVeganaRD. Soy tu asistente inteligente. ¿En qué puedo asistirte hoy?</div>
     </div>
     <div class="chat-footer">
-      <input type="text" id="chatInput" placeholder="Escribe tu duda..." onkeypress="if(event.key=='Enter') sendBot()">
+      <input type="text" id="chatInput" placeholder="Escribe comando..." onkeypress="if(event.key=='Enter') sendBot()" style="background:#000; border:1px solid #222; border-radius:10px; color:#fff; padding:10px; flex:1;">
     </div>
   </div>
   <div class="chat-btn" onclick="toggleChat()">🤖</div>
 </div>
 
-<!-- FOOTER -->
 <footer class="site-footer">
-  <div class="container footer-grid">
-    <div class="footer-col">
-      <h4>OPERADOR</h4>
-      <p><strong>José Luis Vicente</strong><br>Registro ONAPI: <strong>grasaveganard</strong><br>República Dominicana.</p>
-    </div>
-    <div class="footer-col">
-      <h4>CONECTA</h4>
-      <p>WhatsApp: +1 (809) 363-4222<br>Email: contacto@grasaveganard.com</p>
-    </div>
-    <div class="footer-col">
-      <h4>SOCIAL</h4>
-      <div style="font-size:1.5rem; display:flex; gap:20px; margin-top:20px;">📸 🎥 💬</div>
-    </div>
+  <div class="container">
+      <div class="logo-box" style="display:inline-flex; margin-bottom:40px;">
+        <span class="l1">SORTEOS</span>
+        <span class="l2"><span class="blue-text">GRASA</span><span class="red-text">VEGANARD</span></span>
+      </div>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>OPERADOR LEGAL</h4>
+          <p>José Luis Vicente<br>ONAPI: grasaveganard<br>República Dominicana.</p>
+        </div>
+        <div class="footer-col">
+          <h4>ASISTENCIA</h4>
+          <p>WhatsApp: +1 (809) 363-4222<br>Email: contacto@grasaveganard.com</p>
+        </div>
+      </div>
   </div>
 </footer>
 
@@ -213,13 +234,12 @@ const storage = firebase.storage();
 
 /* RIFAS */
 const RAFFLES = [
-  { id:1, name:'MAZDA CX30 2021', price:100, sold:82, img:'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800' },
+  { id:1, name:'MAZDA CX30 2021', price:100, sold:72, img:'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800' },
   { id:2, name:'BMW M4 PERFORMANCE', price:150, sold:15, img:'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800' },
   { id:3, name:'KTM 690 + CASH', price:200, sold:92, img:'https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=800' }
 ];
 
-let sel = null;
-let rFile = null;
+let sel = null; let rFile = null;
 
 function render() {
   document.getElementById('rifasGrid').innerHTML = RAFFLES.map(r => `
@@ -228,7 +248,7 @@ function render() {
       <div class="card-info">
         <h3>${r.name}</h3><span class="price">RD$ ${r.price}</span>
         <div class="prog-bar"><div class="prog-fill" style="width:${r.sold}%"></div></div>
-        <button class="btn-next" style="padding:15px; font-size:0.8rem;" onclick="openBuy(${r.id})">JUGAR / PARTICIPAR</button>
+        <button class="btn-elite" style="width:100%; margin:0; padding:15px; font-size:0.8rem;" onclick="openBuy(${r.id})">JUGAR AHORA</button>
       </div>
     </div>`).join('');
 }
@@ -236,7 +256,6 @@ function render() {
 function openBuy(id) { sel = RAFFLES.find(r=>r.id===id); document.getElementById('pModal').style.display='flex'; nextStep(1); }
 function closeModal() { document.getElementById('pModal').style.display='none'; }
 function nextStep(n) {
-    if(n===2 && (!document.getElementById('uName').value || !document.getElementById('uPhone').value)) return alert("Completa tus datos");
     document.getElementById('step1').style.display = n===1?'block':'none';
     document.getElementById('step2').style.display = n===2?'block':'none';
     document.getElementById('step3').style.display = n===3?'block':'none';
@@ -262,43 +281,8 @@ async function finish() {
         await db.ref('ventas/'+p).push({ name:n, phone:p, raffle:sel.name, ticket:t, status:'pendiente', receipt:url, date:new Date().toLocaleString() });
         window.open(`https://wa.me/18093634222?text=¡Hola! Ya subí mi pago para ${sel.name}. Mi nombre es ${n}. Ticket #${t}`, '_blank');
         location.reload();
-    } catch(e) { alert("Error al subir."); btn.innerText = "FINALIZAR"; btn.disabled = false; }
+    } catch(e) { alert("Error."); btn.innerText = "FINALIZAR"; btn.disabled = false; }
 }
 
-/* GRASA BOT LOGIC */
 function toggleChat() { const w = document.getElementById('chatWin'); w.style.display=w.style.display==='flex'?'none':'flex'; }
 function sendBot() {
-  const inp = document.getElementById('chatInput'), body = document.getElementById('chatBody');
-  if(!inp.value.trim()) return;
-  body.innerHTML += `<div class="msg user">${inp.value}</div>`;
-  const txt = inp.value.toLowerCase(); inp.value = "";
-  setTimeout(() => {
-    let r = "COMANDO NO RECONOCIDO. Escribe WhatsApp al 809-363-4222 para asistencia humana.";
-    if(txt.includes("hola") || txt.includes("buen")) r = "¡Saludos! ¿Listo para participar en los sorteos más reales de RD?";
-    if(txt.includes("pagar") || txt.includes("pago") || txt.includes("cuenta")) r = "Aceptamos POPULAR, BHD y RESERVAS. Elige tu premio, dale a JUGAR y verás las cuentas.";
-    if(txt.includes("verificar") || txt.includes("numero") || txt.includes("boleto")) r = "Baja al final de la página a la sección MIS BOLETOS, pon tu WhatsApp y pulsa BUSCAR.";
-    if(txt.includes("rifa") || txt.includes("premio") || txt.includes("que hay")) r = "Tenemos un MAZDA CX30, un BMW M4 y una KTM 690. ¿Cuál prefieres?";
-    body.innerHTML += `<div class="msg bot">${r}</div>`;
-    body.scrollTop = body.scrollHeight;
-  }, 700);
-}
-
-function buscarVenta() {
-  const p = document.getElementById('sPhone').value.replace(/\D/g,'');
-  db.ref('ventas/'+p).once('value', s => {
-    const d = s.val(); if(!d) return document.getElementById('vResults').innerHTML = "<p style='color:red'>SIN REGISTROS.</p>";
-    let h = "";
-    for(let i in d) {
-      const v = d[i], c = v.status==='aprobado'?'var(--dr-blue)':'orange';
-      h += `<div style="background:rgba(255,255,255,0.05); padding:30px; border-radius:20px; margin-bottom:20px; border-left:5px solid ${c}">
-            <strong style="font-size:1.4rem; font-family:'Syne';">${v.raffle}</strong><br>TICKET: #${v.ticket} - <span style="color:${c}">${v.status.toUpperCase()}</span></div>`;
-    }
-    document.getElementById('vResults').innerHTML = h;
-  });
-}
-
-function checkAdmin() { if(prompt("ACCESS:") === "1234") alert("ACCESO AL SISTEMA..."); }
-render();
-</script>
-</body>
-</html>
