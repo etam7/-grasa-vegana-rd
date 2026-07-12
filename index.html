@@ -6,7 +6,7 @@
 <title>LA GRASA VEGANA | Sorteos Elite RD</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;700;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
 <!-- SDK Firebase -->
 <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
@@ -16,8 +16,8 @@
 <style>
   :root {
     --bg: #000; 
-    --primary: #b1ff00; /* Verde Neón del Logo */
-    --secondary: #0066ff; /* Azul del Logo */
+    --primary: #b1ff00; /* Verde Neón Kawasaki */
+    --secondary: #0066ff; /* Azul Dominicano */
     --dr-red: #ff3131;
     --text: #fff;
     --glass: rgba(255, 255, 255, 0.03);
@@ -31,17 +31,19 @@
     min-height: 100vh;
   }
   
-  /* FONDO BANDERA DOMINICANA OSCURECIDA */
+  /* FONDO BANDERA DOMINICANA CON EFECTO NEÓN */
   body::before {
     content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Flag_of_the_Dominican_Republic.svg/1200px-Flag_of_the_Dominican_Republic.svg.png') center/cover no-repeat;
-    opacity: 0.10; filter: saturate(1.5) contrast(1.2); z-index: -2;
+    opacity: 0.15; 
+    filter: saturate(2.5) contrast(1.5) brightness(0.6) blur(2px);
+    z-index: -2;
   }
 
   body::after {
     content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at 20% 30%, rgba(177, 255, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(0, 102, 255, 0.1) 0%, transparent 50%);
+    background: radial-gradient(circle at 30% 30%, rgba(0, 102, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 49, 49, 0.2) 0%, transparent 50%);
     z-index: -1;
   }
 
@@ -50,75 +52,81 @@
   /* ---------- HEADER ---------- */
   .site-header { 
     position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; 
-    background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(15px); 
-    border-bottom: 1px solid var(--glass-border); height: 90px; 
+    background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); 
+    border-bottom: 2px solid var(--primary); height: 100px; 
     display: flex; align-items: center;
   }
   .header-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; }
   
-  .main-logo { height: 70px; cursor: pointer; filter: drop-shadow(0 0 10px rgba(177, 255, 0, 0.3)); }
+  /* LOGO EN EL HEADER */
+  .main-logo { height: 85px; cursor: pointer; filter: drop-shadow(0 0 15px var(--primary)); }
 
-  .nav-links { display: flex; gap: 30px; font-size: 0.75rem; font-weight: 900; letter-spacing: 2px; }
+  .nav-links { display: flex; gap: 30px; font-size: 0.8rem; font-weight: 900; letter-spacing: 2px; }
+  .nav-links a { color: #fff; text-decoration: none; transition: 0.3s; }
   .nav-links a:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
 
-  /* ---------- HERO ---------- */
-  .hero { min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: 100px; }
-  .hero-logo { width: 300px; margin-bottom: 20px; animation: glow 3s infinite alternate; }
-  @keyframes glow { from { filter: drop-shadow(0 0 10px var(--primary)); } to { filter: drop-shadow(0 0 30px var(--secondary)); } }
+  /* ---------- HERO CON TÍTULO GIGANTE ---------- */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: 120px; }
   
-  .hero h1 { font-family: 'Syne'; font-size: clamp(2.5rem, 10vw, 6rem); line-height: 0.9; margin: 0; text-transform: uppercase; }
-  .text-impact { background: linear-gradient(to right, var(--primary), #fff, var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-  .btn-elite { margin-top: 40px; padding: 22px 50px; background: var(--primary); color: #000; font-family: 'Syne'; font-weight: 800; border: none; border-radius: 8px; cursor: pointer; transition: 0.4s; font-size: 1.1rem; text-transform: uppercase; }
-  .btn-elite:hover { transform: scale(1.05); box-shadow: 0 0 40px var(--primary); }
-
-  /* ---------- CATALOGO DE PREMIOS (RECUPERADO) ---------- */
-  .section-title { font-family: 'Syne'; font-size: 2.5rem; text-align: center; margin: 80px 0 40px; text-transform: uppercase; letter-spacing: 2px; }
-  .grid-rifas { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; padding-bottom: 100px; }
-  .card-rifa { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 30px; overflow: hidden; transition: 0.5s; backdrop-filter: blur(10px); position: relative; }
-  .card-rifa:hover { border-color: var(--primary); transform: translateY(-10px); }
-  .card-img { width: 100%; height: 240px; background-size: cover; background-position: center; border-bottom: 1px solid var(--glass-border); }
-  .card-info { padding: 25px; }
-  .card-info h3 { font-family: 'Syne'; font-size: 1.5rem; margin: 0; text-transform: uppercase; color: #fff; }
-  .price { font-size: 1.6rem; font-weight: 900; color: var(--primary); display: block; margin: 10px 0; font-family: 'JetBrains Mono'; }
+  .hero-logo { width: 450px; max-width: 90%; margin-bottom: 20px; filter: drop-shadow(0 0 20px var(--primary)); }
   
-  .prog-bar { height: 6px; background: rgba(255,255,255,0.05); border-radius: 10px; margin: 15px 0; overflow: hidden; }
-  .prog-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); }
+  .hero h1 { 
+    font-family: 'Syne'; 
+    font-size: clamp(4rem, 18vw, 11rem); /* TÍTULO MUCHO MÁS GRANDE */
+    line-height: 0.8; margin: 0; text-transform: uppercase; font-weight: 800;
+  }
+  
+  .text-impact { 
+    background: linear-gradient(to right, var(--secondary), #fff, var(--dr-red)); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.5));
+  }
 
-  /* ---------- MODAL COMPRA ---------- */
+  .btn-elite { 
+    margin-top: 50px; padding: 25px 60px; background: var(--primary); color: #000; 
+    font-family: 'Syne'; font-weight: 800; border: none; border-radius: 12px; 
+    cursor: pointer; transition: 0.4s; font-size: 1.5rem; text-transform: uppercase; 
+    box-shadow: 0 0 20px rgba(177, 255, 0, 0.4);
+  }
+  .btn-elite:hover { transform: scale(1.1); box-shadow: 0 0 50px var(--primary); }
+
+  /* ---------- CATÁLOGO DE PREMIOS ---------- */
+  .section-title { font-family: 'Syne'; font-size: 3rem; text-align: center; margin: 100px 0 50px; text-transform: uppercase; color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+  .grid-rifas { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 35px; padding-bottom: 120px; }
+  .card-rifa { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 35px; overflow: hidden; transition: 0.5s; backdrop-filter: blur(15px); }
+  .card-rifa:hover { border-color: var(--primary); transform: translateY(-15px); box-shadow: 0 20px 40px rgba(177, 255, 0, 0.1); }
+  .card-img { width: 100%; height: 280px; background-size: cover; background-position: center; }
+  .card-info { padding: 30px; }
+  .card-info h3 { font-family: 'Syne'; font-size: 1.8rem; margin: 0; text-transform: uppercase; }
+  .price { font-size: 1.8rem; font-weight: 900; color: var(--primary); display: block; margin: 15px 0; font-family: 'JetBrains Mono'; }
+  
+  .prog-bar { height: 10px; background: rgba(255,255,255,0.05); border-radius: 20px; margin: 20px 0; overflow: hidden; }
+  .prog-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); box-shadow: 0 0 10px var(--primary); }
+
+  /* ---------- MODAL Y BOT ---------- */
   .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(20px); }
-  .modal-box { background: #0a0a0c; border: 2px solid var(--primary); border-radius: 30px; padding: 40px; width: 95%; max-width: 500px; position: relative; }
-  input, select { width: 100%; padding: 18px; background: #000; border: 1px solid #222; border-radius: 12px; color: #fff; margin-bottom: 15px; font-size: 1rem; }
-  input:focus { border-color: var(--primary); }
-
-  /* ---------- GRASA BOT ---------- */
-  #smart-chat { position: fixed; bottom: 30px; right: 30px; z-index: 2500; }
-  .chat-btn { width: 70px; height: 70px; background: var(--primary); color: #000; border-radius: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 10px 40px rgba(177,255,0,0.3); font-size: 2rem; transition: 0.4s; }
-  .chat-win { position: absolute; bottom: 85px; right: 0; width: 340px; height: 480px; background: #000; border: 1px solid var(--primary); border-radius: 25px; display: none; flex-direction: column; overflow: hidden; }
-  .chat-header { background: #111; padding: 15px; font-family: 'JetBrains Mono'; border-bottom: 1px solid #222; display: flex; justify-content: space-between; color: var(--primary); font-size: 0.8rem; }
-  .chat-body { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
-  .msg { padding: 12px; border-radius: 15px; font-size: 0.85rem; max-width: 85%; }
-  .msg.bot { background: #111; border-left: 3px solid var(--primary); }
-  .msg.user { background: var(--secondary); align-self: flex-end; font-weight: 700; }
-
-  /* ---------- FOOTER ---------- */
-  .site-footer { background: #000; padding: 80px 0; border-top: 1px solid var(--glass-border); margin-top: 50px; }
-  .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 50px; }
+  .modal-box { background: #0a0a0c; border: 2px solid var(--primary); border-radius: 30px; padding: 45px; width: 95%; max-width: 500px; position: relative; }
   
-  .root-btn { position: fixed; bottom: 5px; left: 5px; opacity: 0.05; background: none; border: none; color: #fff; font-size: 8px; cursor: pointer; z-index: 3000; }
+  #smart-chat { position: fixed; bottom: 30px; right: 30px; z-index: 2500; }
+  .chat-btn { width: 80px; height: 80px; background: var(--primary); color: #000; border-radius: 25px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 10px 40px rgba(177,255,0,0.4); font-size: 2.5rem; transition: 0.4s; }
+  .chat-win { position: absolute; bottom: 95px; right: 0; width: 350px; height: 500px; background: #000; border: 2px solid var(--primary); border-radius: 25px; display: none; flex-direction: column; overflow: hidden; }
+
+  .site-footer { background: #000; padding: 100px 0; border-top: 2px solid var(--glass-border); }
+  .root-btn { position: fixed; bottom: 10px; left: 10px; opacity: 0.1; background: none; border: none; color: #fff; font-size: 10px; cursor: pointer; z-index: 3000; }
 </style>
 </head>
 <body>
 
-<button class="root-btn" onclick="checkAdmin()">SYSTEM_OVERRIDE_V5</button>
+<button class="root-btn" onclick="checkAdmin()">ADMIN_V6_ACCESS</button>
 
 <header class="site-header">
   <div class="container header-inner">
-    <!-- TU NUEVO LOGO EN EL HEADER -->
-    <img src="https://i.ibb.co/Lp0FkC0/logo-grasa-vegana.png" class="main-logo" alt="La Grasa Vegana" onclick="location.reload()">
+    <!-- LOGO HEADER -->
+    <img src="https://i.ibb.co/Lp0FkC0/logo-grasa-vegana.png" class="main-logo" alt="La Grasa Vegana">
     
     <nav class="nav-links">
-      <a href="#rifas">RIFAS</a>
+      <a href="#rifas">SORTEOS</a>
       <a href="#verificar">VERIFICAR</a>
     </nav>
   </div>
@@ -126,26 +134,25 @@
 
 <div id="publicView">
   <section class="hero">
-    <!-- LOGO GRANDE EN EL HERO -->
+    <!-- LOGO HERO GIGANTE -->
     <img src="https://i.ibb.co/Lp0FkC0/logo-grasa-vegana.png" class="hero-logo" alt="Logo La Grasa">
-    <h1><span class="text-impact">DEJA DE</span><br>SOÑARLO</h1>
-    <p>La plataforma definitiva de sorteos en República Dominicana.</p>
-    <button class="btn-elite" onclick="document.getElementById('rifas').scrollIntoView()">VER PREMIOS DISPONIBLES</button>
+    <h1><span class="text-impact">DEJA DE</span><br><span class="text-glow">SOÑARLO</span></h1>
+    <p style="letter-spacing: 5px; color: var(--primary); font-weight: 900;">La Para de República Dominicana</p>
+    <button class="btn-elite" onclick="document.getElementById('rifas').scrollIntoView()">Jugar Ahora</button>
   </section>
 
-  <!-- SECCIÓN DE RIFAS REINSTALADA -->
+  <!-- CATÁLOGO RECUPERADO -->
   <section id="rifas" class="container">
-    <h2 class="section-title">Premios <span>en Juego</span></h2>
+    <h2 class="section-title">PREMIOS <span>DISPONIBLES</span></h2>
     <div class="grid-rifas" id="rifasGrid"></div>
   </section>
 
-  <!-- VERIFICADOR -->
   <section id="verificar" class="container" style="padding: 100px 0; border-top: 1px solid #111;">
-    <div style="background:var(--glass); border:1px solid var(--glass-border); padding:60px; border-radius:40px; text-align:center; max-width:700px; margin:0 auto;">
-        <h2 style="font-family:'Syne';">CONSULTAR MIS NÚMEROS</h2>
-        <div style="display:flex; gap:10px; margin-top:30px;">
-            <input type="tel" id="sPhone" placeholder="Tu WhatsApp..." style="margin:0; background:#000;">
-            <button onclick="buscarVenta()" style="background:#fff; color:#000; border:none; padding:0 40px; border-radius:12px; font-weight:900; cursor:pointer;">BUSCAR</button>
+    <div style="background:var(--glass); border:1px solid var(--glass-border); padding:60px; border-radius:40px; text-align:center; max-width:750px; margin:0 auto;">
+        <h2 style="font-family:'Syne'; font-size: 3rem;">MIS <span style="color:var(--primary)">NÚMEROS</span></h2>
+        <div style="display:flex; gap:15px; margin-top:40px;">
+            <input type="tel" id="sPhone" placeholder="WhatsApp registrado..." style="margin:0; background:#000; border-radius:15px; padding:20px;">
+            <button onclick="buscarVenta()" style="background:#fff; color:#000; border:none; padding:0 40px; border-radius:15px; font-weight:900; cursor:pointer; font-size:1.2rem;">BUSCAR</button>
         </div>
         <div id="vResults" style="margin-top:40px; text-align:left;"></div>
     </div>
@@ -155,9 +162,9 @@
 <!-- MODAL COMPRA -->
 <div class="modal-overlay" id="pModal">
     <div class="modal-box">
-        <span style="position:absolute; top:20px; right:25px; cursor:pointer; color:#444; font-size:1.5rem;" onclick="closeModal()">×</span>
+        <span style="position:absolute; top:20px; right:25px; cursor:pointer; color:#555; font-size:2rem;" onclick="closeModal()">×</span>
         <div id="step1">
-            <h2 style="font-family:'Syne'; color:var(--primary);">1. TUS DATOS</h2>
+            <h2 style="font-family:'Syne'; color:var(--primary);">1. DATOS</h2>
             <input type="text" id="uName" placeholder="Nombre completo">
             <input type="tel" id="uPhone" placeholder="WhatsApp">
             <button class="btn-elite" style="width:100%; margin:0;" onclick="nextStep(2)">SIGUIENTE</button>
@@ -170,20 +177,20 @@
                 <option value="bhd">BANCO BHD</option>
                 <option value="reservas">BANRESERVAS</option>
             </select>
-            <div id="bankInfo" style="display:none; background:#000; border:1px solid var(--secondary); padding:20px; border-radius:15px; margin-bottom:20px;">
-                <p id="bName" style="color:var(--primary); font-weight:900; font-family:'Syne';"></p>
-                <p>Cuenta: <strong id="bAcc"></strong></p>
-                <p style="font-size:0.8rem; color:#666;">JOSE LUIS VICENTE</p>
+            <div id="bankInfo" style="display:none; background:#000; border:2px solid var(--secondary); padding:20px; border-radius:15px; margin-bottom:20px;">
+                <p id="bName" style="color:var(--primary); font-weight:900; font-family:'Syne'; font-size:1.4rem;"></p>
+                <p style="font-size:1.3rem;">Cuenta: <strong id="bAcc"></strong></p>
+                <p style="color:#888;">JOSE LUIS VICENTE</p>
             </div>
-            <button class="btn-elite" style="width:100%; margin:0;" onclick="nextStep(3)">YA PAGUÉ</button>
+            <button class="btn-elite" style="width:100%; margin:0;" onclick="nextStep(3)">PAGADO</button>
         </div>
         <div id="step3" style="display:none;">
             <h2 style="font-family:'Syne'; color:var(--primary);">3. RECIBO</h2>
-            <div style="border:2px dashed #333; padding:40px; text-align:center; border-radius:20px; cursor:pointer;" onclick="document.getElementById('fileIn').click()">
-                <span id="fileTxt">Subir foto del comprobante</span>
+            <div style="border:2px dashed var(--primary); padding:50px; text-align:center; border-radius:25px; cursor:pointer; background:rgba(177,255,0,0.02);" onclick="document.getElementById('fileIn').click()">
+                <span id="fileTxt">Subir Comprobante</span>
                 <input type="file" id="fileIn" hidden accept="image/*" onchange="handleFile(this)">
             </div>
-            <button id="btnFinal" class="btn-elite" style="background:var(--primary); color:#000; width:100%; margin-top:20px;" onclick="finish()" disabled>FINALIZAR REGISTRO</button>
+            <button id="btnFinal" class="btn-elite" style="width:100%; margin-top:20px;" onclick="finish()" disabled>FINALIZAR REGISTRO</button>
         </div>
     </div>
 </div>
@@ -191,12 +198,12 @@
 <!-- GRASA BOT 🤖 -->
 <div id="smart-chat">
   <div class="chat-win" id="chatWin">
-    <div class="chat-header"><span>GRASA_CORE_V5.0</span><button onclick="toggleChat()" style="background:none; border:none; color:#fff; cursor:pointer;">×</button></div>
-    <div id="chatBody" class="chat-body">
-      <div class="msg bot">SISTEMA LISTO. 🇩🇴 Bienvenido a La Grasa Vegana. ¿En qué puedo ayudarte? Puedes preguntar por las rifas o los métodos de pago.</div>
+    <div class="chat-header"><span>GRASA_CORE_V6.0_ONLINE</span><button onclick="toggleChat()" style="background:none; border:none; color:#fff;">×</button></div>
+    <div id="chatBody" class="chat-body" style="background:#050505;">
+      <div class="msg bot">CONEXIÓN ESTABLECIDA. 🇩🇴 Bienvenido a La Grasa Vegana. ¿En qué puedo asistirte?</div>
     </div>
     <div class="chat-footer">
-      <input type="text" id="chatInput" placeholder="Escribir comando..." onkeypress="if(event.key=='Enter') sendBot()" style="background:#000; border:1px solid #222; border-radius:10px; color:#fff; padding:10px; flex:1; margin:0;">
+      <input type="text" id="chatInput" placeholder="Escribir comando..." onkeypress="if(event.key=='Enter') sendBot()" style="margin:0; padding:15px; background:#000; color:#fff; border:1px solid #222; flex:1; border-radius:12px;">
     </div>
   </div>
   <div class="chat-btn" onclick="toggleChat()">🤖</div>
@@ -205,17 +212,12 @@
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-col">
-      <img src="https://i.ibb.co/Lp0FkC0/logo-grasa-vegana.png" style="height:60px; margin-bottom:20px;" alt="Logo Footer">
-      <p>José Luis Vicente<br>ONAPI: grasaveganard<br>República Dominicana.</p>
+      <img src="https://i.ibb.co/Lp0FkC0/logo-grasa-vegana.png" style="height:100px;" alt="Logo Footer">
+      <p style="margin-top:20px;">José Luis Vicente<br>ONAPI: grasaveganard<br>República Dominicana.</p>
     </div>
     <div class="footer-col">
-      <h4 style="color:var(--primary);">CONTACTO</h4>
+      <h4 style="color:var(--primary);">ASISTENCIA</h4>
       <p>WhatsApp: +1 (809) 363-4222<br>Email: contacto@grasaveganard.com</p>
-    </div>
-    <div class="footer-col">
-      <h4 style="color:var(--secondary);">REDES</h4>
-      <p>Síguenos para sorteos en vivo:</p>
-      <div style="font-size:1.5rem; display:flex; gap:20px; margin-top:10px;">📸 🎥</div>
     </div>
   </div>
 </footer>
@@ -235,10 +237,10 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 const storage = firebase.storage();
 
-/* RIFAS - Actualizadas según tu logo */
+/* RIFAS - MISMOS PREMIOS DEL LOGO */
 const RAFFLES = [
-  { id:1, name:'BMW M4 COMPETITION', price:250, sold:68, img:'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800' },
-  { id:2, name:'KAWASAKI KX 450 (GREEN)', price:150, sold:42, img:'https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=800' },
+  { id:1, name:'BMW M4 COMPETITION', price:250, sold:72, img:'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800' },
+  { id:2, name:'KAWASAKI KX 450 (GREEN)', price:150, sold:45, img:'https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=800' },
   { id:3, name:'IPHONE 15 PRO MAX', price:100, sold:89, img:'https://images.unsplash.com/photo-1696446701796-da61225697cc?w=800' },
   { id:4, name:'AIR CONDITIONER 24BTU', price:50, sold:15, img:'https://images.unsplash.com/photo-1591189863430-ab87e120f312?w=800' }
 ];
@@ -252,7 +254,7 @@ function render() {
       <div class="card-info">
         <h3>${r.name}</h3><span class="price">RD$ ${r.price}</span>
         <div class="prog-bar"><div class="prog-fill" style="width:${r.sold}%"></div></div>
-        <button class="btn-elite" style="width:100%; margin:0; padding:12px; font-size:0.8rem;" onclick="openBuy(${r.id})">ADQUIRIR BOLETO</button>
+        <button class="btn-elite" style="width:100%; margin:0; padding:15px; font-size:1rem;" onclick="openBuy(${r.id})">ADQUIRIR BOLETO</button>
       </div>
     </div>`).join('');
 }
@@ -260,7 +262,6 @@ function render() {
 function openBuy(id) { sel = RAFFLES.find(r=>r.id===id); document.getElementById('pModal').style.display='flex'; nextStep(1); }
 function closeModal() { document.getElementById('pModal').style.display='none'; }
 function nextStep(n) {
-    if(n===2 && (!document.getElementById('uName').value || !document.getElementById('uPhone').value)) return alert("Llena tus datos");
     document.getElementById('step1').style.display = n===1?'block':'none';
     document.getElementById('step2').style.display = n===2?'block':'none';
     document.getElementById('step3').style.display = n===3?'block':'none';
@@ -273,7 +274,7 @@ function showBank() {
     document.getElementById('bName').innerText = b.toUpperCase();
     document.getElementById('bAcc').innerText = b==='popular'?'798-2234-1' : b==='bhd'?'102-4456-2' : '960-1122-3';
 }
-function handleFile(input) { if(input.files[0]) { rFile = input.files[0]; document.getElementById('fileTxt').innerText = "✅ RECIBO CARGADO"; document.getElementById('btnFinal').disabled = false; } }
+function handleFile(input) { if(input.files[0]) { rFile = input.files[0]; document.getElementById('fileTxt').innerText = "✅ FOTO LISTA"; document.getElementById('btnFinal').disabled = false; } }
 
 async function finish() {
     const n = document.getElementById('uName').value, p = document.getElementById('uPhone').value.replace(/\D/g,'');
@@ -286,7 +287,7 @@ async function finish() {
         await db.ref('ventas/'+p).push({ name:n, phone:p, raffle:sel.name, ticket:t, status:'pendiente', receipt:url, date:new Date().toLocaleString() });
         window.open(`https://wa.me/18093634222?text=¡Hola! Ya subí mi pago para ${sel.name}. Mi nombre es ${n}. Ticket #${t}`, '_blank');
         location.reload();
-    } catch(e) { alert("Error al subir. ¿Activaste Firebase Storage?"); btn.innerText = "FINALIZAR"; btn.disabled = false; }
+    } catch(e) { alert("Error."); btn.innerText = "FINALIZAR"; btn.disabled = false; }
 }
 
 function sendBot() {
@@ -295,10 +296,10 @@ function sendBot() {
   body.innerHTML += `<div class="msg user">${inp.value}</div>`;
   const t = inp.value.toLowerCase(); inp.value = "";
   setTimeout(() => {
-    let r = "SISTEMA: Escribe 'rifas' para ver qué hay o 'pago' para saber cómo pagar.";
-    if(t.includes("hola")) r = "CONEXIÓN ESTABLECIDA. ¿Deseas ganar un BMW o una Kawasaki hoy?";
-    if(t.includes("pago") || t.includes("cuenta")) r = "Aceptamos POPULAR, BHD y RESERVAS. Elige tu premio y dale a PARTICIPAR para ver las cuentas.";
-    if(t.includes("rifa") || t.includes("premios")) r = "Tenemos el BMW M4, la Kawasaki KX verde, iPhones y Aires Acondicionados.";
+    let r = "ERROR_LOG: Contacte soporte vía WhatsApp al 809-363-4222.";
+    if(t.includes("hola")) r = "¡Hola! Bienvenido a la élite. ¿Qué premio quieres ganar hoy?";
+    if(t.includes("pago") || t.includes("cuenta")) r = "Aceptamos POPULAR, BHD y RESERVAS. Elige tu premio y dale a JUGAR para ver los datos.";
+    if(t.includes("rifas")) r = "Tenemos el BMW M4, la Kawasaki KX, iPhones y Aires Acondicionados.";
     body.innerHTML += `<div class="msg bot">${r}</div>`;
     body.scrollTop = body.scrollHeight;
   }, 600);
@@ -310,16 +311,15 @@ function buscarVenta() {
     const d = s.val(); if(!d) return document.getElementById('vResults').innerHTML = "<p style='color:red'>SIN REGISTROS.</p>";
     let h = "";
     for(let i in d) {
-      const v = d[i], c = v.status==='aprobado'? 'var(--primary)':'orange';
-      h += `<div style="background:rgba(255,255,255,0.05); padding:20px; border-radius:15px; margin-bottom:15px; border-left:4px solid ${c}">
-            <strong>${v.raffle}</strong><br>TICKET: #${v.ticket} - <span style="color:${c}">${v.status.toUpperCase()}</span></div>`;
+      const v = d[i], c = v.status==='aprobado'?'var(--primary)':'orange';
+      h += `<div style="background:rgba(255,255,255,0.05); padding:30px; border-radius:20px; margin-bottom:20px; border-left:5px solid ${c}">
+            <strong style="font-size:1.6rem; font-family:'Syne';">${v.raffle}</strong><br>TICKET: #${v.ticket} - <span style="color:${c}">${v.status.toUpperCase()}</span></div>`;
     }
     document.getElementById('vResults').innerHTML = h;
   });
 }
-
 function toggleChat() { const w = document.getElementById('chatWin'); w.style.display=w.style.display==='flex'?'none':'flex'; }
-function checkAdmin() { if(prompt("CLAVE:") === "1234") alert("ACCESO AL SISTEMA..."); }
+function checkAdmin() { if(prompt("ACCESS:") === "1234") alert("PANEL ADMIN..."); }
 render();
 </script>
 </body>
